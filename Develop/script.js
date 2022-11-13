@@ -1,10 +1,9 @@
-var timeDisplayEl = $('#currentDay');
-
-
-
-
+var timeDisplayEl = $('#current-day');
+ 
 
 function displayTime() {
-    var rightNow = moment().format('MMM DD, YYYY');
-    timeDisplayEl.text(rightNow);
-  }
+  var rightNow = moment().format('dddd, MMMM Do');
+  timeDisplayEl.text(rightNow); 
+}
+
+displayTime()
