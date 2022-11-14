@@ -1,4 +1,7 @@
-var timeDisplayEl = $('#current-day');
+var timeDisplayEl = $("#current-day");
+var saveBtn = document.getElementById("saveBtn");
+var eventInput = document.getElementById("event-input");
+
  
 
 function displayTime() {
@@ -7,3 +10,20 @@ function displayTime() {
 }
 
 displayTime()
+
+
+saveBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  var eventEntered = {
+    eventTyped: eventInput.value,
+  };
+
+  eventEntered = JSON.stringify(eventEntered);
+
+  localStorage.setItem("eventEntered", eventEntered);
+
+  console.log(localStorage)
+
+});
+
