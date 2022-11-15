@@ -1,5 +1,4 @@
 var timeDisplayEl = $("#current-day");
-var saveBtn = document.getElementById("save-Btn");
 var eventInput = document.getElementById("event-input");
 var nineAm = document.getElementById("9"); 
 var tenAm = document.getElementById("10"); 
@@ -19,7 +18,38 @@ function displayTime() {
 displayTime()
 
 
-saveBtn.addEventListener("click", function(event) {
+function init() {
+  var storedEvents = JSON.parse(localStorage.getItem("events"));
+
+  if (storedEvents !== null) {
+    eventEntered = storedEvents;
+  } 
+}
+
+btns = document.getElementsByClassName("saveBtn");
+  for (var i=0; i<btns.length; i++){
+    btns[i].addEventListener("click", function(){
+      var eventEntered = {
+        nineAm: nineAm.value,
+        tenAm: tenAm.value,
+        elevenAm: elevenAm.value,
+        twelvePm: twelvePm.value,
+        onePm: onePm.value,
+        twoPm: twoPm.value,
+        threePm: threePm.value,
+        fourPm: fourPm.value,
+        fivePm: fivePm.value,
+      };
+    
+      eventEntered = JSON.stringify(eventEntered);
+    
+      localStorage.setItem("events", eventEntered);
+    
+      console.log(localStorage)
+    });
+  }
+
+/*saveBtn.addEventListener("click", function(event) {
   event.preventDefault();
 
   var eventEntered = {
@@ -37,12 +67,11 @@ saveBtn.addEventListener("click", function(event) {
 
   eventEntered = JSON.stringify(eventEntered);
 
-  localStorage.setItem("Event Entered", eventEntered);
+  localStorage.setItem("events", eventEntered);
 
   console.log(localStorage)
 
-});
-
+}); */
 
 
 
@@ -55,3 +84,6 @@ for(let i=9; i<=17; i++){
     $("#"+i).addClass("present")
   } else {$("#"+i).addClass("future")} 
 };
+
+
+init()
