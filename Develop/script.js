@@ -23,6 +23,12 @@ function init() {
 
   if (storedEvents !== null) {
     eventEntered = storedEvents;
+    rows = document.getElementsByClassName("row");
+    [...rows].forEach(function(row){
+      var id = row.getAttribute("id");
+      var value = eventEntered[id];
+      row.children[1].value = value;
+    })
   } 
 }
 
